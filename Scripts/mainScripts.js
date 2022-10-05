@@ -25,11 +25,13 @@ contents_elements.forEach(content_el => {
 })
 // The Entry Animation for Elements End
 
+
+
+// Landing Section Scribts Start
 const order_array = [1, 2, 3];
 let accountant_div = document.querySelector(".accountant");
 let architect_div = document.querySelector(".architect");
 let lawyer_div = document.querySelector(".lawyer");
-// let programmer_div = document.querySelector(".programmer");
 
 order_array.sort((a, b) => 0.5 - Math.random());
 
@@ -66,37 +68,49 @@ function display_state(new_state) {
 
     }
 }
+// Landing Section Scribts End
 
 
 // Statistics Section Scribts Start
 let elements = document.querySelectorAll(".statistics-section .stat-num");
-let statistics_section = document.querySelector(".statistics-section");
-let started = false;
+let jobs_card = document.querySelector(".jobs");
+let companies_card = document.querySelector(".companies");
+let applies_card = document.querySelector(".applies");
+let opportunities_card = document.querySelector(".opportunities");
 
 window.onscroll = function () {
-    console.log("1");
-    if (window.scrollY >= (statistics_section.offsetTop - 250)) {
-        console.log("2");
-
-        if (!started) {
-            console.log("3");
-            elements.forEach((num) => counter(num));
-
-        }
-        started = true;
+    
+    if (window.scrollY >= (jobs_card.offsetTop - 250)) {
+        counter(elements[0], 2);
+    }
+    if (window.scrollY >= (companies_card.offsetTop - 250)) {
+        counter(elements[1], 20);
+        
+    }
+    if (window.scrollY >= (applies_card.offsetTop - 250)) {
+        counter(elements[2], 10);
+        
+    }
+    if (window.scrollY >= (opportunities_card.offsetTop - 250)) {
+        counter(elements[3], 1);        
     }
 };
 
-function counter(element) {
-    console.log("4");
-    let goal = element.dataset.goal;
-    let count = setInterval(() => {
-        element.textContent++;
-        if (element.textContent == goal) {
-            clearInterval(count);
+function counter(element, increment){
+    
+    let updateCount = () => {
+        let data_goal = +element.getAttribute('data-goal');
+        let num = +element.innerText;
+        
+        if (num < data_goal) {
+            element.innerText = num + increment;
+            
+            setTimeout(updateCount, 100);
+        } else {
+            element.innerText = data_goal;
         }
-    }, 2000 / goal);
+    };
+
+    updateCount();
 }
-
-// Statistics Section Scribts Start
-
+// Statistics Section Scribts End
