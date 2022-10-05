@@ -1,3 +1,30 @@
+// The Slide-up for Sections Titles Start
+let sections_titles = document.querySelectorAll(".slide-up");
+let contents_elements = document.querySelectorAll(".slide-in");
+let appearing_way = {
+    // threshhold: 1,
+    rootMargin: "0px 0px -100px 0px"
+};
+let appear_on_scroll = new IntersectionObserver(function(elements, appear_on_scroll) {
+
+    elements.forEach(element => {
+        if(!element.isIntersecting){
+            return;
+        }else{
+            element.target.classList.add("appear");
+            appear_on_scroll.unobserve(element.target);
+        }
+    })
+}, appearing_way);
+
+sections_titles.forEach(title => {
+    appear_on_scroll.observe(title);
+})
+contents_elements.forEach(content_el => {
+    appear_on_scroll.observe(content_el);
+})
+// The slide-up for Sections Titles End
+
 const order_array = [1, 2, 3];
 let accountant_div = document.querySelector(".accountant");
 let architect_div = document.querySelector(".architect");
