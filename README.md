@@ -1,3 +1,3 @@
 # Demo
 
-https://zacodingspace.github.io/wadhfny/
+https://zcodingspace.github.io/wadhfny/
